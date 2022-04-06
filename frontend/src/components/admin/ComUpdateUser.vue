@@ -110,6 +110,9 @@ export default {
       },
     };
   },
+    created() {
+    alert('At this point, events and lifecycle have been initialized.')
+  },
   methods: {
     UpdateUser() {
       fetch(`http://localhost/BRIEFS_6/admin/updateUser`, {
@@ -119,7 +122,6 @@ export default {
         .then((result) => result.json())
         .then((data) => {
           if (data) {
-            this.$forceUpdate();
             this.$emit("close");
             this.$emit("getOneUser");
           }
