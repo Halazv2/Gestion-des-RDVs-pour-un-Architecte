@@ -6,8 +6,7 @@
           <h2 id="Alluser">All User ☜(ﾟヮﾟ☜)</h2>
           <table class="w-full">
             <thead>
-              <tr
-                class="
+              <tr class="
                   text-md
                   font-semibold
                   tracking-wide
@@ -15,13 +14,12 @@
                   bg-gray-100
                   uppercase
                   border-b border-gray-600
-                "
-              >
+                ">
                 <th id="disflex" class="px-4 py-3">Sujet</th>
                 <th id="disflex" class="px-4 py-3">creneau</th>
                 <th id="disflex" class="px-4 py-3">Date</th>
                 <th id="disflex" class="px-4 py-3">Action</th>
-                <th id="disflex" class="px-4 py-3">Chrono</th>
+                <th id="disflex" class="px-4 py-3">chrono</th>
               </tr>
             </thead>
             <tbody class="bg-white">
@@ -39,14 +37,13 @@
 
                 <td class="px-4 py-3 text-sm border">{{ rdv.date }}</td>
                 <td class="px-4 py-3 text-sm border">
-                  <a @click="DeleteRDV(rdv.id)" class="text-[#FF0000]"
-                    >Delete</a
-                  >
+                  <a v-if="rdv.chrono >= 1" @click="DeleteRDV(rdv.id)" class="text-[#FF0000]">Delete</a>
                   &nbsp;
-                  <a @click="getRdv(rdv.id)" class="text-[#088F8F]">Edit</a>
+                  <a v-if="rdv.chrono >= 1" @click="getRdv(rdv.id)" class="text-[#088F8F]">Edit</a>
+                  <h3 v-if="rdv.chrono < 1" class="text-red">tu ne peux pas modifier </h3>
                 </td>
                 <td class="px-4 py-3 text-sm border">
-                  <a class="text-[#0096FF]">{{ rdv.chrono }}</a>
+                  <a class="text-[#0096FF]">{{ rdv.chrono }} Jours</a>
                 </td>
               </tr>
             </tbody>
@@ -54,13 +51,7 @@
         </div>
       </div>
     </section>
-    <UpdateRDV
-      class="popap"
-      :idToUpdate="idToUpdate"
-      @close="close"
-      @getAllRDV="getAllRDV"
-      v-if="!popRdvF"
-    />
+    <UpdateRDV class="popap" :idToUpdate="idToUpdate" @close="close" @getAllRDV="getAllRDV" v-if="!popRdvF" />
   </div>
 </template>
 
@@ -76,7 +67,7 @@ export default {
       id: "",
       today: new Date(),
       RDVdt: "",
-      chrono: [],
+      // chrono: [],
       popRdv: {},
       popRdvF: true,
       idToUpdate: "",
@@ -98,12 +89,12 @@ export default {
           this.list = reponse;
           reponse.forEach((element) => {
             let eleme = element.date;
-            console.log(eleme);
             const deff = intervalToDuration({ end: this.today, start: new Date(eleme) });
-            element["chrono"] = deff;
+            element["chrono"] = deff.days;
           });
         });
     },
+
     check() {
       if (localStorage.getItem("role") === null) {
         this.$router.push("/");
@@ -142,12 +133,14 @@ export default {
   top: 0%;
   left: 0%;
 }
+
 #disflex {
   text-align: center;
   color: darkslateblue;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
 #Alluser {
   font-size: 1.5rem;
   font-weight: bold;
