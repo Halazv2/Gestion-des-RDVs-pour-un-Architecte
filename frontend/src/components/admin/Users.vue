@@ -3,7 +3,9 @@
     <section class="container mx-auto p-6 font-mono">
       <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
         <div class="w-full overflow-x-auto">
-          <div id="Alluser" class="pb-6 text-xl font-bold">All User ☜(ﾟヮﾟ☜)</div>
+          <div id="Alluser" class="pb-6 text-xl font-bold">
+            All User ☜(ﾟヮﾟ☜)
+          </div>
           <table class="w-full">
             <thead>
               <tr
@@ -46,7 +48,9 @@
                       ></div>
                     </div>
                     <div>
-                      <p class="font-semibold text-black">{{ user.Nom }} {{ user.Prenom }}</p>
+                      <p class="font-semibold text-black">
+                        {{ user.Nom }} {{ user.Prenom }}
+                      </p>
                     </div>
                   </div>
                 </td>
@@ -124,16 +128,17 @@ export default {
       });
     },
     check() {
-      if (localStorage.getItem('role') === null) {
-        this.$router.push('/');
-      } else if (localStorage.getItem('role') === 'admin') {
-        this.$router.push('/admin');
+      if (localStorage.getItem("role") === null) {
+        this.$router.push("/");
+      } else if (localStorage.getItem("role") === "admin") {
+        this.$router.push("/admin");
       } else {
-        this.$router.push('/User');
+        this.$router.push("/User");
       }
     },
     close() {
       this.popUserF = !this.popUserF;
+      this.GetAllUser();
     },
     getUser(id) {
       this.popUserF = !this.popUserF;

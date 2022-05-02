@@ -19,7 +19,7 @@ const routes = [
     name: "OLD ",
 
     component: () =>
-      import(/* webpackChunkName: "about" */ "../view/OldRDV.vue"),
+      import(/* webpackChunkName: "about" */ "../view/OldRdv.vue"),
   },
   {
     path: "/Admin",

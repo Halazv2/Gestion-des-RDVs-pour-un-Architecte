@@ -62,7 +62,9 @@
               />
               <a id="cntdija" href="#" v-on:click="form = !form">
                 <br />
-                <span class="Newconte Newconte--abd">Already have an account?</span>
+                <span class="Newconte Newconte--abd"
+                  >Already have an account?</span
+                >
               </a>
             </div>
           </form>
@@ -72,7 +74,6 @@
   </div>
 </template>
 <script>
-
 export default {
   name: "Auth-m",
   inject: ["role", "resetRole", "changeRole"],
@@ -155,7 +156,7 @@ export default {
         .then((data) => {
           if (data) {
             this.showAlert(data[5]);
-            this.form = !this.form
+            this.form = !this.form;
           }
         });
     },
