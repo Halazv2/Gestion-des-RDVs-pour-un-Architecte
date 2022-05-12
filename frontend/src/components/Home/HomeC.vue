@@ -56,6 +56,7 @@
             </div>
             <div class="flex justify-center items-center">
               <button
+              @click="pushauth"
                 class="
                   focus:outline-none
                   focus:ring-2
@@ -316,6 +317,11 @@
 <script>
 export default {
   name: "homeComponent",
+  methods: {
+    pushauth(){
+      this.$router.push('/');
+    }
+  },
 };
 </script>
 

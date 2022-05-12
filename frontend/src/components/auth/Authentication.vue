@@ -34,31 +34,32 @@
           </form>
         </div>
         <div class="formContetTwo" v-if="!form">
-          <form>
-            <input type="text" v-model="registreForm.Nom" placeholder="Nom" />
+          <form  @submit.prevent="register" >
+            <input type="text" v-model="registreForm.Nom" placeholder="Nom" required />
             <input
               type="text"
               v-model="registreForm.Prenom"
               placeholder="Prenom"
+              required
             />
             <input
               type="number"
               min="22"
               v-model="registreForm.Age"
               placeholder="Age"
+              required
             />
             <input
               type="TEXT"
               v-model="registreForm.Job"
               placeholder="profession"
+              required
             />
-            <input type="text" v-model="registreForm.CIN" placeholder="CIN" />
+            <input type="text" v-model="registreForm.CIN" placeholder="CIN" required />
             <div class="flex-butt">
               <input
-                type="button"
+                type="submit"
                 class="hgjd bg-sky-600 hover:bg-sky-700"
-                value="Submit"
-                @click="register"
               />
               <a id="cntdija" href="#" v-on:click="form = !form">
                 <br />
@@ -108,10 +109,10 @@ export default {
           if (!reponse) {
             return;
           }
-          localStorage.setItem("role", role);
+         localStorage.setItem("role", role);
           localStorage.setItem("id", reponse.id);
           this.changeRole(role);
-          this.$router.push(`/${role}`);
+          this.$router.push(`/home`);
         });
     },
     // checkAdmin() {

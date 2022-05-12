@@ -16,7 +16,7 @@
           >Tous mes rendez-vous</router-link
         >
       </template>
-      <router-link v-if="role === 'admin'" class="nav-item" to="/Admin">Admin</router-link>
+      <router-link v-if="role === 'admin'" class="nav-item" to="/Admin">All User</router-link>
       <router-link v-if="role === 'admin'" class="nav-item" to="/ALLRDV">RDV</router-link>   
     </div>
     <div class="shrink-0 flex items-center gap-2">
@@ -64,6 +64,9 @@ nav {
   display: inline-block;
   position: relative;
   padding-bottom: 3px;
+}
+.nav-item:hover {
+  cursor: pointer;
 }
 .nav-item:after {
   content: "";
